@@ -69,6 +69,18 @@ class Busquedas {
         }
     }
 
+    mostrarResultados(lugar, clima){
+        console.clear()
+        console.log("\n Información de la ciudad \n".green)
+        console.log(` ${"Ciudad:".yellow} ${lugar.nombre}`)
+        console.log(` ${"Latitud:".yellow} ${lugar.lat}`)
+        console.log(` ${"Longitud:".yellow} ${lugar.lng}`)
+        console.log(` ${"Temperatura:".yellow} ${clima.temperatura} Cº`)
+        console.log(` ${"Minima:".yellow} ${clima.minima} Cº`)
+        console.log(` ${"Maxima:".yellow} ${clima.maxima} Cº`)
+        console.log(` ${"Ambiente:".yellow} ${clima.ambiente}`)
+    }
+
     agregarHistorial(lugar = ""){
 
         if(this.historial.includes(lugar)){

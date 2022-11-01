@@ -35,15 +35,8 @@ const main = async()=>{
                 const clima = await busquedas.climaLugar(lugar.lat, lugar.lng)
 
                 //Mostrar resultados
-                console.clear()
-                console.log("\n Información de la ciudad \n".green)
-                console.log(` ${"Ciudad:".yellow} ${lugar.nombre}`)
-                console.log(` ${"Latitud:".yellow} ${lugar.lat}`)
-                console.log(` ${"Longitud:".yellow} ${lugar.lng}`)
-                console.log(` ${"Temperatura:".yellow} ${clima.temperatura} Cº`)
-                console.log(` ${"Minima:".yellow} ${clima.minima} Cº`)
-                console.log(` ${"Maxima:".yellow} ${clima.maxima} Cº`)
-                console.log(` ${"Ambiente:".yellow} ${clima.ambiente}`)
+                busquedas.mostrarResultados(lugar, clima)
+
                 break;
 
             case 2:
@@ -67,18 +60,10 @@ const main = async()=>{
                         const lugarHClima = await busquedas.climaLugar(lugarHFiltrado.lat, lugarHFiltrado.lng)
 
                         //Mostrar Resultados
-                        console.clear()
-                        console.log("\n Información de la ciudad \n".green)
-                        console.log(` ${"Ciudad:".yellow} ${lugarHFiltrado.nombre}`)
-                        console.log(` ${"Latitud:".yellow} ${lugarHFiltrado.lat}`)
-                        console.log(` ${"Longitud:".yellow} ${lugarHFiltrado.lng}`)
-                        console.log(` ${"Temperatura:".yellow} ${lugarHClima.temperatura} Cº`)
-                        console.log(` ${"Minima:".yellow} ${lugarHClima.minima} Cº`)
-                        console.log(` ${"Maxima:".yellow} ${lugarHClima.maxima} Cº`)
-                        console.log(` ${"Ambiente:".yellow} ${lugarHClima.ambiente}`)
-
+                        busquedas.mostrarResultados(lugarHFiltrado, lugarHClima)
                     }
                 }
+
                 break;
         }
 
