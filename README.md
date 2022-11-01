@@ -15,7 +15,7 @@ Para instalar todas las dependencias del programa.
 
 
 ## Como usarlo
-Primero ingresa al archivo [example.env](example.env) y rellena las dos variables de entorno con las keys que te brindan las [APIs](##apis-utilizadas).
+Primero ingresa al archivo [example.env](example.env) y rellena las dos variables de entorno con las keys que te brindan las [APIs](#apis-utilizadas).
 
 Una vez rellenes y renombres el archivo a ".env" (sin comillas). 
 
