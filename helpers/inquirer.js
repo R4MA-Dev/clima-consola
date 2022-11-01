@@ -98,5 +98,32 @@ const listarLugares = async(lugares = [])=>{
     return lugar.id
 }
 
+const listarHistorial = async(lugares = [])=>{
+    console.clear()
+    const opciones = lugares.map( (lugar, indice) =>{
+        return{
+            value : lugar ,
+            name : `${indice + 1}. `.green + `${lugar}`
+        }
+    })
 
-export { inquirerMenu, pausa, leerInput, listarLugares }
+    opciones.unshift({
+        value : 0,
+        name : "0. ".green + "Salir \n"
+    })
+
+    const preguntas = [
+        {
+            type : "list",
+            name : "id",
+            message : "¿Qué lugar deseas volver a ver?".yellow,
+            choices : opciones
+        }
+    ]
+
+    const lugar = await inquirer.prompt(preguntas)
+    return lugar.id
+}
+
+
+export { inquirerMenu, pausa, leerInput, listarLugares, listarHistorial }

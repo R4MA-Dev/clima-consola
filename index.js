@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 
 
-import { inquirerMenu, leerInput, pausa, listarLugares } from "./helpers/inquirer.js"
+import { inquirerMenu, leerInput, pausa, listarLugares, listarHistorial } from "./helpers/inquirer.js"
 import Busquedas from "./models/busquedas.js";
 
 
@@ -52,9 +52,32 @@ const main = async()=>{
                 if(busquedas.historial.length === 0){
                     console.log(" El historial esta vacio".yellow)
                 }else{
-                    busquedas.historial.forEach((lugar, indice) =>{
-                        console.log(` ${indice + 1}. `.green + `${lugar}`)
-                    })
+                    //Mostrar y seleccionar un lugar del historial
+                    const lugarH = await listarHistorial(busquedas.historial)
+                    if(lugarH === 0){
+                        continue;
+                    }else{
+                        //Buscar el lugar seleccionado con la API
+                        const lugarHEncontrado = await busquedas.ciudad(lugarH)
+
+                        //Filtrar entre todos los lugares el que coincida con el del historial y tomar los datos
+                        const lugarHFiltrado = lugarHEncontrado.find(lugar => lugar.nombre === lugarH)
+
+                        //Tomar los datos del lugar filtrado para darselos a la API del clima
+                        const lugarHClima = await busquedas.climaLugar(lugarHFiltrado.lat, lugarHFiltrado.lng)
+
+                        //Mostrar Resultados
+                        console.clear()
+                        console.log("\n Información de la ciudad \n".green)
+                        console.log(` ${"Ciudad:".yellow} ${lugarHFiltrado.nombre}`)
+                        console.log(` ${"Latitud:".yellow} ${lugarHFiltrado.lat}`)
+                        console.log(` ${"Longitud:".yellow} ${lugarHFiltrado.lng}`)
+                        console.log(` ${"Temperatura:".yellow} ${lugarHClima.temperatura} Cº`)
+                        console.log(` ${"Minima:".yellow} ${lugarHClima.minima} Cº`)
+                        console.log(` ${"Maxima:".yellow} ${lugarHClima.maxima} Cº`)
+                        console.log(` ${"Ambiente:".yellow} ${lugarHClima.ambiente}`)
+
+                    }
                 }
                 break;
         }
