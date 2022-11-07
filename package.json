@@ -1,14 +1,14 @@
 {
   "name": "clima-consola",
   "version": "1.0.0",
-  "description": "",
+  "description": "Aplicación de consola que muestra coordenadas y clima del lugar que le indicas",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "node index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ramiro Mercado",
   "license": "MIT",
   "dependencies": {
     "axios": "^1.1.3",
